@@ -115,7 +115,7 @@ export default function Component() {
       <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
         <div className="p-8 rounded-2xl shadow-[0_0_10px_#a168d6] group transition-all duration-300 hover:shadow-[0_0_20px_#a168d6] bg-white/10 backdrop-blur-md border border-white/20">
           <h1 className="text-black dark:text-white text-6xl font-extrabold mb-4 max-w-4xl mx-auto">
-            Hi, I'm
+            Hi, I'mHAHAHAHAHAHAHAHA
             <span className="block font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#7A7FEE] to-[#140c55] glitch animate-float">
               Earl Balitcha
             </span>
