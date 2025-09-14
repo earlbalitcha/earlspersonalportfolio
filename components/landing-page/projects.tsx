@@ -47,7 +47,7 @@ export default function Projects() {
       <h2 className="text-black dark:text-white mb-6 text-3xl md:text-4xl lg:text-5xl font-medium leading-tight">
         Featured
         <span className="block text-[#7A7FEE] dark:text-[#7A7FEE]">
-          Projects
+          Projectshehe
         </span>
       </h2>
       <p className="mb-12 max-w-2xl text-gray-700 dark:text-gray-300">
