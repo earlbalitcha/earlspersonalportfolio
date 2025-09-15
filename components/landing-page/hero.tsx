@@ -117,7 +117,7 @@ export default function Component() {
           <h1 className="text-black dark:text-white text-6xl font-extrabold mb-4 max-w-4xl mx-auto">
             Hi, I'm DAPAT MA PUBLISH TO
             <span className="block font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#7A7FEE] to-[#140c55] glitch animate-float">
-              Earl Balitchatest
+              Earl Balitchatest123
             </span>
           </h1>
           <h2 className="text-black dark:text-gray-300 text-xl mb-10">
