@@ -105,21 +105,6 @@
     position: relative;
   }
 
-  .dark .card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url("/noise-texture.png");
-    background-size: 200px;
-    opacity: 0.4;
-    mix-blend-mode: overlay;
-    pointer-events: none;
-    border-radius: inherit;
-  }
-
   .btn-primary {
     background-color: #7a7fee;
     color: #ffffff;

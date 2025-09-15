@@ -68,7 +68,7 @@ export function AnimatedSkillsGrid() {
               ref={(el) => {
                 skillRefs.current[index] = el;
               }}
-              className={`group relative overflow-hidden rounded-xl bg-card/50 backdrop-blur-sm border border-border p-6 transition-all duration-700 hover:scale-105 hover:bg-card/80 transform ${
+              className={`group relative overflow-hidden rounded-xl card backdrop-blur-sm border border-border p-6 transition-all duration-700 hover:scale-105 hover:bg-card/80 transform ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -77,8 +77,8 @@ export function AnimatedSkillsGrid() {
 
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-4">
-                  <Icon className="h-6 w-6 text-primary group-hover:text-secondary transition-colors duration-300" />
-                  <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded-full">
+                  <Icon className="h-6 w-6 text-primary group-hover:text-[#7a7fee] transition-colors duration-300" />
+                  <span className="text-xs text-black font-semibold dark:text-white bg-[#7a7fee] px-2 py-1 rounded-full">
                     {skill.category}
                   </span>
                 </div>

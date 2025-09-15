@@ -113,18 +113,7 @@ export default function Header() {
                           ? "text-[#7A7FEE] dark:text-[#7A7FEE]"
                           : "text-black dark:text-white hover:text-[#7A7FEE] dark:hover:text-[#7A7FEE]"
                       }`}>
-                      Portfolio
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/start"
-                      className={`transition-colors ${
-                        pathname === "/start"
-                          ? "text-[#7A7FEE] dark:text-[#7A7FEE]"
-                          : "text-black dark:text-white hover:text-[#7A7FEE] dark:hover:text-[#7A7FEE]"
-                      }`}>
-                      Start Project
+                      Projects
                     </Link>
                   </li>
                 </ul>

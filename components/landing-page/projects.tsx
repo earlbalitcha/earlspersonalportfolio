@@ -43,12 +43,10 @@ export default function Projects() {
   );
 
   return (
-    <section id="projects" className="my-20">
+    <section id="projects" className="my-20 overflow-hidden">
       <h2 className="text-black dark:text-white mb-6 text-3xl md:text-4xl lg:text-5xl font-medium leading-tight">
-        Featured
-        <span className="block text-[#7A7FEE] dark:text-[#7A7FEE]">
-          Projectshehe
-        </span>
+        Featured{" "}
+        <span className="text-[#7A7FEE] dark:text-[#7A7FEE]">Projects</span>
       </h2>
       <p className="mb-12 max-w-2xl text-gray-700 dark:text-gray-300">
         A showcase of my recent projects, highlighting creative solutions,
@@ -56,7 +54,7 @@ export default function Projects() {
         experiences.
       </p>
 
-      {/* Mobile: stacked list */}
+      {/* Mobile: stacked list (< md) */}
       <div className="md:hidden grid grid-cols-1 gap-6">
         {isLoading
           ? Array.from({length: 6}).map((_, index) => (
@@ -94,7 +92,6 @@ export default function Projects() {
                   <p className="text-gray-700 dark:text-gray-300 text-sm mt-1 mb-4">
                     {project.shortDescription}
                   </p>
-                  {/* Show tags on mobile under description */}
                   {Array.isArray(project.categories) &&
                     project.categories.length > 0 && (
                       <div className="mt-2 mb-3 flex flex-wrap gap-2">
@@ -116,8 +113,72 @@ export default function Projects() {
             ))}
       </div>
 
-      {/* Desktop: CLICK accordion (no hover expand) */}
-      <div className="hidden md:flex md:h-[22rem] gap-4">
+      {/* Tablet & Laptop: grid (md to lg), keep same look, 2 columns */}
+      <div className="hidden md:grid xl:hidden grid-cols-1 md:grid-cols-2 gap-6">
+        {isLoading
+          ? Array.from({length: 6}).map((_, i) => (
+              <div
+                key={`skeleton-g-${i}`}
+                className="card overflow-hidden shadow-lg rounded-2xl animate-pulse h-[22rem]">
+                <div className="h-full w-full bg-gray-200 dark:bg-gray-700" />
+              </div>
+            ))
+          : projects.map((project) => (
+              <button
+                key={project.slug}
+                className="relative rounded-2xl overflow-hidden shadow-lg text-left"
+                onClick={() => openProjectPopup(project)}>
+                <div className="relative h-[22rem] w-full">
+                  <Image
+                    src={
+                      project.mainImage ||
+                      "/placeholder.svg?height=600&width=800&query=project"
+                    }
+                    alt={project.title}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 hover:scale-105"
+                  />
+
+                  {/* Overlay: ALWAYS visible (dark background) */}
+                  <div
+                    className={[
+                      "absolute inset-x-0 bottom-0",
+                      "bg-black/50 backdrop-blur-sm",
+                      "p-4 md:p-6 text-white",
+                      "opacity-100 translate-y-0",
+                      "transition-[opacity,transform] duration-500 ease-out",
+                    ].join(" ")}>
+                    <h3 className="font-semibold text-2xl md:text-3xl">
+                      {project.title}
+                    </h3>
+                    <p className="mt-1 text-sm md:text-base">
+                      {project.shortDescription}
+                    </p>
+
+                    {Array.isArray(project.categories) &&
+                      project.categories.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {project.categories.map((tag) => (
+                            <span
+                              key={tag}
+                              className="inline-flex items-center rounded-full bg-white/90 px-2.5 py-1 text-xs font-medium text-gray-800 shadow">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                    <span className="mt-4 inline-flex items-center text-[#7A7FEE] text-sm font-medium underline-offset-2 hover:underline">
+                      Visit site <ArrowUpRight className="w-4 h-4 ml-1" />
+                    </span>
+                  </div>
+                </div>
+              </button>
+            ))}
+      </div>
+
+      <div className="hidden xl:flex xl:h-[22rem] gap-4">
         {isLoading
           ? Array.from({length: 6}).map((_, i) => (
               <div
@@ -137,11 +198,10 @@ export default function Projects() {
                   className="relative card overflow-hidden shadow-lg rounded-2xl cursor-pointer group"
                   style={{
                     ...baseCardStyle,
-                    flexGrow: isActive ? 12 : 3, // wider inactive
+                    flexGrow: isActive ? 12 : 6, // wider inactive
                     maxWidth: isActive ? "100%" : 420,
                   }}
                   onClick={() => {
-                    // first click expands, second click opens
                     if (isActive) {
                       openProjectPopup(project);
                     } else {
@@ -162,66 +222,69 @@ export default function Projects() {
                       }
                       alt={project.title}
                       fill
-                      sizes="(min-width: 768px) 33vw, 100vw"
+                      sizes="(min-width: 1280px) 33vw, 100vw"
                       className={[
-                        "object-cover transition-[transform,opacity] duration-500",
+                        "object-cover transition-[transform,opacity] duration-400",
                         isActive
                           ? "scale-100 opacity-100"
                           : "scale-110 opacity-90",
                       ].join(" ")}
                     />
 
-                    {/* Content overlay: only visible when active to avoid squished text */}
+                    {/* Overlay content — FADE IN when active */}
                     <div
                       className={[
                         "absolute inset-x-0 bottom-0",
                         "bg-black/50 backdrop-blur-sm",
-                        "p-4 md:p-6 text-white",
-                        "transition-all duration-300",
+                        "px-4 md:px-6 py-3 text-white",
+                        "transition-[opacity,transform] duration-500 ease-in",
                         isActive
                           ? "opacity-100 translate-y-0"
                           : "opacity-0 translate-y-2 pointer-events-none",
-                      ].join(" ")}>
+                        "will-change-opacity will-change-transform",
+                      ].join(" ")}
+                      style={{transitionDelay: isActive ? "120ms" : "0ms"}}
+                      aria-hidden={!isActive}>
                       <h3
                         className={[
                           "font-semibold",
-                          isActive ? "text-2xl md:text-3xl" : "text-lg",
+                          isActive ? "text-lg md:text-xl" : "text-lg",
                           "transition-all",
                         ].join(" ")}>
                         {project.title}
                       </h3>
 
-                      <p className="mt-1 text-sm md:text-base">
+                      <p className="mt-1 text-sm md:text-md">
                         {project.shortDescription}
                       </p>
 
-                      {/* TAGS: only when active */}
                       {isActive &&
                         Array.isArray(project.categories) &&
                         project.categories.length > 0 && (
-                          <div className="mt-3 flex flex-wrap gap-2">
-                            {project.categories.map((tag) => (
-                              <span
-                                key={tag}
-                                className="inline-flex items-center rounded-full bg-white/90 px-2.5 py-1 text-xs font-medium text-gray-800 shadow">
-                                {tag}
-                              </span>
-                            ))}
+                          <div className="mt-3 flex items-center justify-between">
+                            <div className="flex flex-wrap gap-2">
+                              {project.categories.map((tag) => (
+                                <span
+                                  key={tag}
+                                  className="inline-flex items-center rounded-full bg-white/90 px-2 text-[11px] font-medium text-gray-800 shadow">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+
+                            <a
+                              href={project.projectUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="ml-4 inline-flex items-center text-nowrap text-white text-sm font-medium underline-offset-2 hover:underline"
+                              onClick={(e) => e.stopPropagation()}>
+                              Visit site{" "}
+                              <ArrowUpRight className="w-4 h-4 ml-1" />
+                            </a>
                           </div>
                         )}
-
-                      {/* CTA: goes to projectUrl; stop propagation so it doesn't collapse/expand */}
-                      <a
-                        href={project.projectUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-4 inline-flex items-center text-[#7A7FEE] text-sm font-medium underline-offset-2 hover:underline"
-                        onClick={(e) => e.stopPropagation()}>
-                        Visit site <ArrowUpRight className="w-4 h-4 ml-1" />
-                      </a>
                     </div>
 
-                    {/* Collapsed badge: clean title without squishing */}
                     {!isActive && (
                       <div className="absolute left-3 bottom-3">
                         <span className="inline-flex items-center max-w-[11rem] truncate rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-gray-800 shadow">

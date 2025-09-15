@@ -35,7 +35,6 @@ export default function LandingPage({
       <Hero />
       <div className="container pt-4">
         <Projects />
-        <Services />
         <Faq />
         <AnimatedSkillsGrid />
         <Timeline />

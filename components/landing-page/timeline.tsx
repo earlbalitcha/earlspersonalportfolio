@@ -5,32 +5,32 @@ import {motion} from "framer-motion";
 
 const experiences = [
   {
-    title: "Senior Frontend Engineer",
-    company: "Tech Innovations Inc.",
-    period: "2021 - Present",
+    title: "Full Stack Web Developer",
+    company: "Falcon Global Services",
+    period: "Sep 2025 – Present",
     description:
-      "Lead the frontend development team in building a SaaS platform. Implemented new features, improved performance, and mentored junior developers.",
+      "Owning end-to-end features across React/Next.js, Node.js, and SQL/Prisma. Integrations, testing, and deployments for internal tools and client sites.",
   },
   {
-    title: "Frontend Developer",
-    company: "Digital Solutions Co.",
-    period: "2019 - 2021",
+    title: "Mid-Level Full Stack Web Developer",
+    company: "Falcon Global Services",
+    period: "Mar 2025 – Aug 2025",
     description:
-      "Developed responsive web applications using React and TypeScript. Collaborated with designers and backend engineers to deliver high-quality products.",
+      "Promoted to mid-level full stack developer, taking on greater ownership of backend architecture, API design, and database schema work while still leading major React/Next.js feature development.",
   },
   {
-    title: "Web Developer",
-    company: "Creative Agency",
-    period: "2017 - 2019",
+    title: "Shopify Frontend → Junior Web Developer",
+    company: "Falcon Global Services",
+    period: "Apr 2024 – Feb 2025",
     description:
-      "Built websites and web applications for various clients. Worked with HTML, CSS, JavaScript, and WordPress.",
+      "Started as Shopify Frontend (intern/probation). Regularized Oct 2024 and grew into a broader junior web dev role. Shipped themes/sections, UX improvements, and API consumption.",
   },
   {
-    title: "Intern",
-    company: "Startup Hub",
-    period: "2016 - 2017",
+    title: "B.S. Information Technology",
+    company: "Central Luzon State University",
+    period: "2019 – 2024",
     description:
-      "Assisted in developing web applications and learned modern web development practices.",
+      "Graduated 2024 with foundations in web development, databases, and software engineering.",
   },
 ];
 
@@ -38,23 +38,21 @@ export function Timeline() {
   const isMobile = useMobile();
 
   return (
-    <div className="space-y-12 relative my-12">
-      {/* Title + Description section (separate) */}
+    <div className="space-y-12 relative my-20 overflow-hidden">
+      {/* Title + Description */}
       <div className="text-start">
         <h2 className="text-black dark:text-white mb-6 text-3xl md:text-4xl lg:text-5xl font-medium leading-tight">
-          Unleash Your
-          <span className="block text-[#7A7FEE] dark:text-[#7A7FEE]">
-            Business
-          </span>
+          My Professional
+          <span className="text-[#7A7FEE] dark:text-[#7A7FEE]">Journey</span>
         </h2>
         <p className="mb-12 max-w-2xl text-gray-700 dark:text-gray-300">
-          We build custom platforms and AI-powered tools to simplify your
-          operations and help you scale. Our process makes it easy to bring your
-          ideas to life.
+          A steady progression from Shopify Frontend in 2024 to Mid-Level Full
+          Stack in 2025. I focus on building reliable, scalable features across
+          the stack and continuously growing my impact on products and teams.
         </p>
       </div>
 
-      {/* Timeline container */}
+      {/* Timeline */}
       <div
         className={`space-y-12 relative ${
           !isMobile
@@ -75,15 +73,19 @@ export function Timeline() {
               whileInView={{opacity: 1, x: 0}}
               transition={{duration: 0.5}}
               viewport={{once: true}}>
-              <div className="relative overflow-hidden rounded-xl bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 p-6 transition-all duration-300 hover:border-purple-500/50">
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl blur opacity-25 hover:opacity-100 transition duration-1000 hover:duration-200"></div>
+              <div className="relative overflow-hidden rounded-xl card shadow-md p-5 md:p-6 transition-all duration-300 hover:border-purple-500/50">
+                <div className="absolute card rounded-xl blur opacity-25 hover:opacity-100 transition duration-1000 hover:duration-200"></div>
 
                 <div className="relative">
-                  <h3 className="text-xl font-bold">{experience.title}</h3>
-                  <div className="text-zinc-400 mb-4">
+                  <h3 className="text-lg md:text-xl text-gray-700 dark:text-white font-bold">
+                    {experience.title}
+                  </h3>
+                  <div className="text-sm md:text-base text-gray-700 dark:text-gray-300 mb-3">
                     {experience.company} | {experience.period}
                   </div>
-                  <p className="text-zinc-300">{experience.description}</p>
+                  <p className="text-sm md:text-base text-gray-700 dark:text-gray-300">
+                    {experience.description}
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -91,7 +93,7 @@ export function Timeline() {
             {!isMobile && (
               <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
                 <motion.div
-                  className="w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 z-10 flex items-center justify-center"
+                  className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 z-10 flex items-center justify-center"
                   initial={{scale: 0}}
                   whileInView={{scale: 1}}
                   transition={{duration: 0.3}}
